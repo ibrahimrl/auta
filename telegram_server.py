@@ -13,6 +13,7 @@ from telegram.ext import (
     filters,
 )
 
+#dummy predict function for testing
 def predict(dst_file_path, random_id):
     return 'Mercedes E' 
 
@@ -56,13 +57,13 @@ async def handle_image(update: Update, context: CallbackContext):
         await update.message.reply_text('Processing....' )
 
         make_model = predict(dst_file_path, random_id)
-
         
         await update.message.reply_text(f'Recognized Make Model : {make_model}')
 
 async def reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print("Reply")
-    await context.bot.send_message(chat_id=update.effective_chat.id, text="Salam")
+    reply_text = "We are sorry, but our system currently only accepts image files. Thank you!"
+    await context.bot.send_message(chat_id=update.effective_chat.id, text=reply_text)
 
 
 
@@ -73,12 +74,9 @@ def main():
     message_handler = MessageHandler(filters.PHOTO, handle_image)
     application.add_handler(message_handler)
 
-
-
     message_handler2 = MessageHandler(filters.TEXT & (~filters.COMMAND), reply)
     application.add_handler(message_handler2)
     
-
     print("Starting ......")
 
     application.run_polling()
