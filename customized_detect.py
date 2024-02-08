@@ -101,6 +101,7 @@ def run(
     half=False,  # use FP16 half-precision inference
     dnn=False,  # use OpenCV DNN for ONNX inference
     vid_stride=1,  # video frame-rate stride
+    anonymization = False, # Custom variable to use for anonymization not to crop detected object
 ):
     source = str(source)
     print("Source ", source)
@@ -206,77 +207,23 @@ def run(
 
                 x0, y0, x1, y1, conf, cls = det[indices]
 
-                cv2.imwrite(str(p), im0[int(y0):int(y1),int(x0):int(x1)])
+                if anonymization:
+                    # Extract the region of interest
+                    roi = im0[int(y0):int(y1), int(x0):int(x1)]
 
+                    # Apply blur to the region
+                    blurred_roi = cv2.blur(roi, (15, 15))  # You can adjust the kernel size for the blur
 
-                # Print results
-                # for c in det[:, 5].unique():
-                #     n = (det[:, 5] == c).sum()  # detections per class
-                #     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
+                    # Replace the original region with the blurred one
+                    im0[int(y0):int(y1), int(x0):int(x1)] = blurred_roi
 
-                # # Write results
-                # for *xyxy, conf, cls in reversed(det):
-                #     c = int(cls)  # integer class
-                #     label = names[c] if hide_conf else f"{names[c]}"
-                #     confidence = float(conf)
-                #     confidence_str = f"{confidence:.2f}"
+                    # Save the modified image
+                    cv2.imwrite(str(p), im0)
+                
+                else:
+                    cv2.imwrite(str(p), im0[int(y0):int(y1),int(x0):int(x1)])
 
-                #     if save_csv:
-                #         write_to_csv(p.name, label, confidence_str)
-
-                #     if save_txt:  # Write to file
-                #         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
-                #         line = (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
-                #         with open(f"{txt_path}.txt", "a") as f:
-                #             f.write(("%g " * len(line)).rstrip() % line + "\n")
-
-                #     if save_img or save_crop or view_img:  # Add bbox to image
-                #         c = int(cls)  # integer class
-                #         label = None if hide_labels else (names[c] if hide_conf else f"{names[c]} {conf:.2f}")
-                #         annotator.box_label(xyxy, label, color=colors(c, True))
-                #     if save_crop:
-                #         save_one_box(xyxy, imc, file=save_dir / "crops" / names[c] / f"{p.stem}.jpg", BGR=True)
-
-            # Stream results
-            # im0 = annotator.result()
-            # if view_img:
-            #     if platform.system() == "Linux" and p not in windows:
-            #         windows.append(p)
-            #         cv2.namedWindow(str(p), cv2.WINDOW_NORMAL | cv2.WINDOW_KEEPRATIO)  # allow window resize (Linux)
-            #         cv2.resizeWindow(str(p), im0.shape[1], im0.shape[0])
-            #     cv2.imshow(str(p), im0)
-            #     cv2.waitKey(1)  # 1 millisecond
-
-            # # Save results (image with detections)
-            # if save_img:
-            #     if dataset.mode == "image":
-            #         cv2.imwrite(save_path, im0)
-            #     else:  # 'video' or 'stream'
-            #         if vid_path[i] != save_path:  # new video
-            #             vid_path[i] = save_path
-            #             if isinstance(vid_writer[i], cv2.VideoWriter):
-            #                 vid_writer[i].release()  # release previous video writer
-            #             if vid_cap:  # video
-            #                 fps = vid_cap.get(cv2.CAP_PROP_FPS)
-            #                 w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-            #                 h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-            #             else:  # stream
-            #                 fps, w, h = 30, im0.shape[1], im0.shape[0]
-            #             save_path = str(Path(save_path).with_suffix(".mp4"))  # force *.mp4 suffix on results videos
-            #             vid_writer[i] = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*"mp4v"), fps, (w, h))
-            #         vid_writer[i].write(im0)
-
-        # Print time (inference-only)
-    #     LOGGER.info(f"{s}{'' if len(det) else '(no detections), '}{dt[1].dt * 1E3:.1f}ms")
-
-    # # Print results
-    # t = tuple(x.t / seen * 1e3 for x in dt)  # speeds per image
-    # LOGGER.info(f"Speed: %.1fms pre-process, %.1fms inference, %.1fms NMS per image at shape {(1, 3, *imgsz)}" % t)
-    # if save_txt or save_img:
-    #     s = f"\n{len(list(save_dir.glob('labels/*.txt')))} labels saved to {save_dir / 'labels'}" if save_txt else ""
-    #     LOGGER.info(f"Results saved to {colorstr('bold', save_dir)}{s}")
-    # if update:
-    #     strip_optimizer(weights[0])  # update model (to fix SourceChangeWarning)
+                
 
 
 def parse_opt():
@@ -309,6 +256,8 @@ def parse_opt():
     parser.add_argument("--half", action="store_true", help="use FP16 half-precision inference")
     parser.add_argument("--dnn", action="store_true", help="use OpenCV DNN for ONNX inference")
     parser.add_argument("--vid-stride", type=int, default=1, help="video frame-rate stride")
+    parser.add_argument("--anonymization", default=False, help="Blur the detected object")
+
     opt = parser.parse_args()
     opt.imgsz *= 2 if len(opt.imgsz) == 1 else 1  # expand
     print_args(vars(opt))
