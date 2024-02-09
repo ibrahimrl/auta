@@ -1,13 +1,14 @@
 #!/bin/bash
 
 # Check if the correct number of arguments is provided
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <folder_path> <python_script>"
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 <folder_path> <python_script> <anonymization_flag>"
     exit 1
 fi
 
 folder_path=$1
 python_script=$2
+anonymization_flag=$3
 
 # Check if the folder exists
 if [ ! -d "$folder_path" ]; then
@@ -19,6 +20,11 @@ fi
 for subfolder in "$folder_path"/*; do
     if [ -d "$subfolder" ]; then
         echo "Running $python_script for subfolder: $subfolder"
-        python3 "$python_script" --weights yolov5s.pt --source "$subfolder"
+        
+        if [ "$anonymization_flag" == "True" ]; then
+            python3 "$python_script" --weights yolov5s.pt --source "$subfolder" --anonymization
+        else
+            python3 "$python_script" --weights yolov5s.pt --source "$subfolder"
+        fi
     fi
 done
