@@ -13,9 +13,29 @@ from telegram.ext import (
     filters,
 )
 
+
+import  detection_inference
+import make_model_recognition 
+
+detection_model = detection_inference.load_model('yolov5s.pt')
+make_model = make_model_recognition.load_model('Weights/MakeModel_Rec.pt')
+car_names = make_model_recognition.read_class_names('Weights/ClassNames.txt')
+
+
 #dummy predict function for testing
 def predict(dst_file_path, random_id):
-    return 'Mercedes E' 
+    global make_model, detection_model, car_names
+
+
+    croped_car =  detection_inference.perform_inference(detection_model, dst_file_path)
+
+    if not croped_car:
+        return
+    car_make_model = make_model_recognition.forward(make_model,croped_car,car_names)
+
+
+
+    return car_make_model
 
 async def handle_image(update: Update, context: CallbackContext):
 
@@ -57,8 +77,13 @@ async def handle_image(update: Update, context: CallbackContext):
         await update.message.reply_text('Processing....' )
 
         make_model = predict(dst_file_path, random_id)
+
+        if make_model is not None:
         
-        await update.message.reply_text(f'Recognized Make Model : {make_model}')
+            await update.message.reply_text(f'Recognized Make Model : {make_model}')
+        else:
+            await update.message.reply_text(f'Sorry we could not find the vehicle in the image.')
+
 
 async def reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print("Reply")
@@ -68,7 +93,9 @@ async def reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def main():
-
+    
+    # export TELEGRAM_BOT_TOKEN="your telegram token"
+    
     application = Application.builder().token(os.getenv("TELEGRAM_BOT_TOKEN")).build()
 
     message_handler = MessageHandler(filters.PHOTO, handle_image)
