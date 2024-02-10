@@ -2,7 +2,7 @@
 <br/>
 
 <div style="display: flex;">
-  <img src="images/Telegram_screenshots1.png" alt="Main Gameplay Screen" style="width: 30%;  padding-right: 5%;">
+  <img src="images/Telegram_screenshots1.png" alt="Main Gameplay Screen" style="width: 30%;  padding-left: 5%;">
   <img src="images/Telegram_screenshots2.png" alt="Second Image" style="width: 30%;">
   <img src="images/Telegram_screenshot3.jpg" alt="Second Image" style="width: 30%;">
 </div>
@@ -21,7 +21,7 @@ The project is organized as follows:
     - [single_image_deleter.py](Folder_Reordering/single_image_deleter.py): Python script to delete subfolders containing only a single image.
     - [merge_folders.py](Folder_Reordering/merge_folders.py): Python script to merge similar folders.
 
-2. [Customized Detect](): Customized version of YOLOv5's detect.py file, modified to detect all vehicles in an image and save the largest vehicle. Includes an option to anonymize license plates. It will download YOLO pretrained weight automatically.
+2. **Customized Detect**: Customized version of YOLOv5's detect.py file, modified to detect all vehicles in an image and save the largest vehicle. Includes an option to anonymize license plates. It will download YOLO pretrained weight automatically.
     - [customized_detect.py](customized_detect.py): Modified version of YOLOv5's detect.py file.
     - [weights/LP_Detect_weight.pt](Weights/LP_Detect_weight.pt): Pre-trained weights for license plate detection.
 
