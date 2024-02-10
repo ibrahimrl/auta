@@ -25,16 +25,26 @@ The project is organized as follows:
     - [customized_detect.py](customized_detect.py): Modified version of YOLOv5's detect.py file.
     - [weights/LP_Detect_weight.pt](Weights/LP_Detect_weight.pt): Pre-trained weights for license plate detection.
 <div style="display: flex;">
-  <img src="images/raw_Data.jpg" alt="raw data" style="width: 49%;">
-  <img src="images/processed_data.jpg" alt="processed data" style="width: 49%;">
+  <div style="width: 49%;">
+    <img src="images/raw_Data.jpg" alt="Raw Data" style="width: 100%;">
+    <p style="text-align: center; font-weight: bold;">Raw Data</p>
+  </div>
+  <div style="width: 49%;">
+    <img src="images/processed_data.jpg" alt="Processed Data" style="width: 100%;">
+    <p style="text-align: center; font-weight: bold;">Processed Data</p>
+  </div>
 </div>
 
-3. **Make Model Recognition**: 
+1. **Make Model Recognition**: 
     - [Train_make_model__recognition.ipynb](Train_make_model__recognition.ipynb): Python script for training the car make and model recognition model.
     - [weights/MakeModel_Rec.pt](Weights/MakeModel_Rec.pt): Trained weights for the make and model recognition model.
     - [Class_Names.txt](Weights/Class_Names.txt): Text file containing human-readable class names for the model's predictions.
   
-![Predictions](images/example_output.png)
+<div style="text-align: center;">
+  <img src="images/example_output.png" alt="Single Image" style="width: 70%;">
+</div>
+
+
 
 1. [telegram_server.py](telegram_server.py): Python script for the Telegram bot server. Receives images from users, predicts the car make and model, and sends the results back.
 
