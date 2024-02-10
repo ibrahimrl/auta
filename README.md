@@ -50,9 +50,17 @@ The project is organized as follows:
 
 Before using the Telegram bot, ensure you have set up the required environment:
 
+ Clone the repository:
+  ```bash
+  git clone https://github.com/ibrahimrl/auta.git
+  cd auta
+  git submodule update --init
+  ```
+
+
 1. **Create a Virtual Environment**: It is recommended to create a virtual environment to manage dependencies. You can create a virtual environment using `venv` or `virtualenv`. For example:
     ```bash
-    python -m venv venv
+    python3 -m venv venv
     ```
 
 2. **Activate the Virtual Environment**: Activate the virtual environment to install dependencies and run the bot.
