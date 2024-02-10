@@ -25,14 +25,17 @@ The project is organized as follows:
     - [customized_detect.py](customized_detect.py): Modified version of YOLOv5's detect.py file.
     - [weights/LP_Detect_weight.pt](Weights/LP_Detect_weight.pt): Pre-trained weights for license plate detection.
 <div style="display: flex;">
-  <div style="width: 49%;">
     <img src="images/raw_Data.jpg" alt="Raw Data" style="width: 49%;">
-    <p style="text-align: center; font-weight: bold;">Raw Data</p>
-  </div>
-  <div style="width: 49%;">
     <img src="images/processed_data.jpg" alt="Processed Data" style="width: 49%;">
-    <p style="text-align: center; font-weight: bold;">Processed Data</p>
-  </div>
+</div>
+
+<div style="display: flex">
+<div style="width: 49%;">
+<p style="text-align: center; font-weight: bold;">Raw Data</p>
+</div>
+<div style="width: 49%;">
+ <p style="text-align: center; font-weight: bold;">Processed Data</p>
+ </div>
 </div>
 
 1. **Make Model Recognition**: 
