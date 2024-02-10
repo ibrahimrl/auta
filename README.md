@@ -2,11 +2,10 @@
 <br/>
 
 <div style="display: flex;">
-  <img src="images/Telegram_screenshots1.png" alt="Main Gameplay Screen" style="width: 30%;">
+  <img src="images/Telegram_screenshots1.png" alt="Main Gameplay Screen" style="width: 30%;  padding-right: 5%;"">
   <img src="images/Telegram_screenshots2.png" alt="Second Image" style="width: 30%;">
   <img src="images/Telegram_screenshot3.jpg" alt="Second Image" style="width: 30%;">
 </div>
-
 
 
 ## Car Make and Model Recognition Telegram Bot
