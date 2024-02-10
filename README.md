@@ -2,9 +2,9 @@
 <br/>
 
 <div style="display: flex;">
-  <img src="images/Telegram_screenshots1.png" alt="Main Gameplay Screen" style="width: 30%;  padding-left: 5%;">
-  <img src="images/Telegram_screenshots2.png" alt="Second Image" style="width: 30%;">
-  <img src="images/Telegram_screenshot3.jpg" alt="Second Image" style="width: 30%;">
+  <img src="images/Telegram_screenshots1.png" alt="sst1" style="width: 30%;  padding-left: 5%;">
+  <img src="images/Telegram_screenshots2.png" alt="sst2" style="width: 30%;">
+  <img src="images/Telegram_screenshot3.jpg" alt="sst3" style="width: 30%;">
 </div>
 
 
@@ -24,13 +24,19 @@ The project is organized as follows:
 2. **Customized Detect**: Customized version of YOLOv5's detect.py file, modified to detect all vehicles in an image and save the largest vehicle. Includes an option to anonymize license plates. It will download YOLO pretrained weight automatically.
     - [customized_detect.py](customized_detect.py): Modified version of YOLOv5's detect.py file.
     - [weights/LP_Detect_weight.pt](Weights/LP_Detect_weight.pt): Pre-trained weights for license plate detection.
+<div style="display: flex;">
+  <img src="images/raw_Data.jpg" alt="raw data" style="width: 50%;  padding-left: 5%;">
+  <img src="images/processed_data.jpg" alt="processed data" style="width: 50%;">
+</div>
 
 3. **Make Model Recognition**: 
     - [Train_make_model__recognition.ipynb](Train_make_model__recognition.ipynb): Python script for training the car make and model recognition model.
     - [weights/MakeModel_Rec.pt](Weights/MakeModel_Rec.pt): Trained weights for the make and model recognition model.
     - [Class_Names.txt](Weights/Class_Names.txt): Text file containing human-readable class names for the model's predictions.
+  
+![Predictions](images/example_output.png)
 
-4. [telegram_server.py](telegram_server.py): Python script for the Telegram bot server. Receives images from users, predicts the car make and model, and sends the results back.
+1. [telegram_server.py](telegram_server.py): Python script for the Telegram bot server. Receives images from users, predicts the car make and model, and sends the results back.
 
 
 
