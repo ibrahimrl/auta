@@ -93,7 +93,7 @@ To use the Telegram bot:
 
 ## Credits
 
-- License plate detection model based on YOLOv5 by [KALYAN1045](https://github.com/KALYAN1045/Automatic-Number-Plate-Recognition-using-YOLOv5).
+- License plate detection weights taken from [KALYAN1045](https://github.com/KALYAN1045/Automatic-Number-Plate-Recognition-using-YOLOv5).
 
 ## License
 
