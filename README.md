@@ -29,16 +29,9 @@ The project is organized as follows:
     <img src="images/processed_data.jpg" alt="Processed Data" style="width: 49%;">
 </div>
 
-<div style="display: flex">
-<div style="width: 49%;">
-<p style="text-align: center; font-weight: bold;">Raw Data</p>
-</div>
-<div style="width: 49%;">
- <p style="text-align: center; font-weight: bold;">Processed Data</p>
- </div>
-</div>
+***The first image is the **Raw Data** and the second is **Processed Data*****
 
-1. **Make Model Recognition**: 
+3. **Make Model Recognition**: 
     - [Train_make_model__recognition.ipynb](Train_make_model__recognition.ipynb): Python script for training the car make and model recognition model.
     - [weights/MakeModel_Rec.pt](Weights/MakeModel_Rec.pt): Trained weights for the make and model recognition model.
     - [Class_Names.txt](Weights/Class_Names.txt): Text file containing human-readable class names for the model's predictions.
@@ -49,7 +42,7 @@ The project is organized as follows:
 
 
 
-1. [telegram_server.py](telegram_server.py): Python script for the Telegram bot server. Receives images from users, predicts the car make and model, and sends the results back.
+4. [telegram_server.py](telegram_server.py): Python script for the Telegram bot server. Receives images from users, predicts the car make and model, and sends the results back.
 
 
 
