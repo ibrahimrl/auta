@@ -26,11 +26,11 @@ The project is organized as follows:
     - [weights/LP_Detect_weight.pt](Weights/LP_Detect_weight.pt): Pre-trained weights for license plate detection.
 <div style="display: flex;">
   <div style="width: 49%;">
-    <img src="images/raw_Data.jpg" alt="Raw Data" style="width: 100%;">
+    <img src="images/raw_Data.jpg" alt="Raw Data" style="width: 49%;">
     <p style="text-align: center; font-weight: bold;">Raw Data</p>
   </div>
   <div style="width: 49%;">
-    <img src="images/processed_data.jpg" alt="Processed Data" style="width: 100%;">
+    <img src="images/processed_data.jpg" alt="Processed Data" style="width: 49%;">
     <p style="text-align: center; font-weight: bold;">Processed Data</p>
   </div>
 </div>
@@ -41,7 +41,7 @@ The project is organized as follows:
     - [Class_Names.txt](Weights/Class_Names.txt): Text file containing human-readable class names for the model's predictions.
   
 <div style="text-align: center;">
-  <img src="images/example_output.png" alt="Single Image" style="width: 70%;">
+  <img src="images/example_output.png" alt="Single Image" style="width: 49%;">
 </div>
 
 
