@@ -1,10 +1,10 @@
-#auta
+# auta
 <br/>
 
 <div style="display: flex;">
-  <img src="images/Telegram_screenshots1.png" alt="Main Gameplay Screen" style="width: 33%;">
-  <img src="images/Telegram_screenshots2.png" alt="Second Image" style="width: 33%;">
-  <img src="images/Telegram_screenshot3.jpg" alt="Second Image" style="width: 33%;">
+  <img src="images/Telegram_screenshots1.png" alt="Main Gameplay Screen" style="width: 25%;">
+  <img src="images/Telegram_screenshots2.png" alt="Second Image" style="width: 25%;">
+  <img src="images/Telegram_screenshot3.jpg" alt="Second Image" style="width: 25%;">
 </div>
 
 
