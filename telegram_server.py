@@ -29,7 +29,7 @@ def predict(dst_file_path, random_id):
 
     croped_car =  detection_inference.perform_inference(detection_model, dst_file_path)
 
-    if not croped_car:
+    if croped_car is None:
         return
     car_make_model = make_model_recognition.forward(make_model,croped_car,car_names)
 
